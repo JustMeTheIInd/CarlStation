@@ -296,6 +296,14 @@
 /area/station/maintenance/external/port/bow
 	name = "\improper Port Bow External Hull Access"
 
+
+/*
+EvoStation Specific Areas
+*/
+/area/station/maintenance/central/lower
+	name = "Lower Central Maintenance"
+	icon_state = "maint"
+
 /*
 * Station Specific Areas
 * If another station gets added, and you make specific areas for it
