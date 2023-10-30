@@ -35,6 +35,13 @@
 /obj/effect/turf_decal/bot/right,
 /obj/structure/safe,
 /obj/machinery/light/small/directional/west,
+/obj/item/stack/spacecash/c5000,
+/obj/item/stack/spacecash/c5000,
+/obj/item/stack/spacecash/c5000,
+/obj/item/gun/ballistic/automatic/pistol/m1911,
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/abandoned/bar)
 "bQ" = (
@@ -71,7 +78,6 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/nanotrasen,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/abandoned/crew)
 "fM" = (
@@ -93,7 +99,7 @@
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/shuttle/abandoned/medbay)
 "gl" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/crew)
 "gn" = (
 /turf/open/floor/carpet/royalblue,
@@ -194,6 +200,9 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned/bridge)
 "lc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned/bar)
 "ly" = (
@@ -234,17 +243,17 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/obj/machinery/door/airlock/vault{
-	name = "Ship Engine"
-	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Ship Engineering Compartment"
+	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "mC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/item/restraints/handcuffs,
-/obj/item/gun/energy/e_gun,
+/obj/item/gun/energy/e_gun/mini,
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/shuttle/abandoned/bridge)
 "mM" = (
@@ -265,6 +274,9 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/abandoned/crew)
+"mX" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/abandoned/bar)
 "pc" = (
 /obj/structure/bed/double,
 /obj/item/bedsheet/cosmos/double,
@@ -307,11 +319,7 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/cargo)
 "qA" = (
-/obj/structure/rack,
 /obj/effect/turf_decal/bot/left,
-/obj/item/wrench,
-/obj/item/crowbar/red/caravan,
-/obj/item/storage/toolbox/emergency,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bar)
@@ -450,13 +458,9 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "wu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/nanotrasen,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/mob/living/simple_animal/hostile/nanotrasen/ranged,
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "wN" = (
@@ -484,10 +488,10 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bar)
 "Am" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/bridge)
 "AF" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/medbay)
 "Bk" = (
 /obj/structure/window/reinforced/shuttle,
@@ -506,8 +510,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/structure/closet/emcloset/anchored,
 /obj/machinery/light/small/directional/south,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned/bar)
 "BS" = (
@@ -543,7 +549,7 @@
 /area/shuttle/abandoned/medbay)
 "Dc" = (
 /obj/structure/sign/warning/docking,
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/bar)
 "Dt" = (
 /obj/machinery/door/airlock/external{
@@ -581,15 +587,14 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "FL" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/cargo)
 "FQ" = (
-/obj/machinery/door/airlock/ce{
-	name = "Ship Bridge";
-	id = "whiteship_bridge"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/obj/machinery/door/airlock/captain{
+	name = "Cockpit"
+	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "FX" = (
@@ -600,7 +605,9 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "GM" = (
-/mob/living/simple_animal/hostile/nanotrasen,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned/bar)
 "IF" = (
@@ -643,28 +650,36 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/shuttle/abandoned/crew)
+"Ki" = (
+/obj/effect/turf_decal/bot/right,
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/open/floor/iron/dark,
+/area/shuttle/abandoned/bar)
 "Kn" = (
 /obj/structure/window/reinforced/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/medbay)
 "Kx" = (
-/obj/machinery/door/airlock/vault{
-	name = "Secure Compartment Access"
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Compartment Access"
+	},
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "KG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/structure/closet/firecloset/full,
 /obj/machinery/light/small/directional/south,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned/bar)
 "Lf" = (
@@ -738,7 +753,7 @@
 /area/shuttle/abandoned/engine)
 "Qo" = (
 /obj/machinery/vending/boozeomat/cafe,
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/bar)
 "QC" = (
 /obj/structure/table/reinforced,
@@ -762,10 +777,10 @@
 /area/shuttle/abandoned/bridge)
 "Ri" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/door/airlock/shuttle{
-	name = "E.V.A Gear"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/obj/machinery/door/airlock/engineering{
+	name = "Tool Storage"
+	},
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bar)
 "RN" = (
@@ -774,11 +789,10 @@
 	dir = 4
 	},
 /obj/machinery/firealarm/directional/south,
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "RW" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned/engine)
 "Sh" = (
 /obj/effect/turf_decal/stripes/line{
@@ -898,13 +912,12 @@
 /area/shuttle/abandoned/bar)
 "VM" = (
 /obj/effect/turf_decal/bot/left,
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bar)
 "VT" = (
-/obj/machinery/suit_storage_unit/centcom,
 /obj/effect/turf_decal/bot/right,
+/obj/structure/rack,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bar)
 "Wv" = (
@@ -1057,13 +1070,13 @@ Yl
 "}
 (6,1,1) = {"
 ZS
-ht
-ht
-ht
-ht
+mX
+mX
+mX
+mX
 ht
 mg
-ht
+mX
 FL
 FL
 FL
@@ -1071,10 +1084,10 @@ FL
 "}
 (7,1,1) = {"
 ZS
-ht
+mX
 qA
 VM
-ht
+mX
 ba
 Mo
 Jq
@@ -1090,7 +1103,7 @@ Lf
 zi
 Ri
 Xe
-wu
+Mo
 fM
 zg
 aS
@@ -1099,10 +1112,10 @@ bV
 "}
 (9,1,1) = {"
 ZS
-ht
+mX
+Ki
 VT
-VT
-ht
+mX
 rg
 Mo
 rA
@@ -1113,11 +1126,11 @@ bV
 "}
 (10,1,1) = {"
 ZS
-ht
-ht
-ht
-ht
-ht
+mX
+mX
+mX
+mX
+mX
 Kx
 ht
 FL
@@ -1130,7 +1143,7 @@ ZS
 uj
 lc
 BQ
-ht
+mX
 uy
 Sh
 ZZ
@@ -1146,7 +1159,7 @@ DM
 MR
 jF
 Eu
-hj
+wu
 wi
 MP
 aV
@@ -1158,7 +1171,7 @@ ZS
 Dc
 GM
 KG
-ht
+mX
 Vc
 hj
 al
@@ -1216,7 +1229,7 @@ JH
 Ys
 WY
 VL
-hj
+wu
 NB
 cQ
 TU
@@ -1243,7 +1256,7 @@ AF
 AF
 AF
 AF
-ht
+mX
 FQ
 Qo
 gl
