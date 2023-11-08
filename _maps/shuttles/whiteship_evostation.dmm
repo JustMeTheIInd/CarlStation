@@ -177,9 +177,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/nanotrasen{
-	name = "\improper Nanotrasen Private Security Pilot"
-	},
+/mob/living/basic/trooper/nanotrasen,
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bridge)
 "kZ" = (
@@ -253,6 +251,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/item/restraints/handcuffs,
+/obj/item/clothing/gloves/captain/pilot,
 /obj/item/gun/energy/e_gun/mini,
 /turf/open/floor/mineral/titanium/tiled/blue,
 /area/shuttle/abandoned/bridge)
@@ -263,7 +262,7 @@
 	pixel_x = -30
 	},
 /obj/machinery/light/directional/west,
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/basic/trooper/nanotrasen,
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bridge)
 "mS" = (
@@ -377,9 +376,15 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "rU" = (
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
-/turf/open/floor/plating,
-/area/shuttle/abandoned/engine)
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
+/obj/structure/cable,
+/mob/living/basic/trooper/nanotrasen/ranged,
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/abandoned/bar)
 "rZ" = (
 /obj/machinery/power/shuttle_engine/heater{
 	dir = 8
@@ -403,7 +408,7 @@
 	pixel_x = -28
 	},
 /obj/machinery/light/directional/west,
-/mob/living/simple_animal/hostile/nanotrasen/ranged/smg,
+/mob/living/basic/trooper/nanotrasen,
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bridge)
 "uy" = (
@@ -460,7 +465,7 @@
 "wu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/mob/living/simple_animal/hostile/nanotrasen/ranged,
+/mob/living/basic/trooper/nanotrasen/ranged/smg,
 /turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/bar)
 "wN" = (
@@ -537,6 +542,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /obj/machinery/meter,
 /obj/structure/cable,
+/mob/living/basic/trooper/nanotrasen,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Db" = (
@@ -1047,7 +1053,7 @@ uU
 RW
 px
 ct
-rU
+ct
 wN
 pr
 RW
@@ -1103,7 +1109,7 @@ Lf
 zi
 Ri
 Xe
-Mo
+rU
 fM
 zg
 aS
@@ -1159,7 +1165,7 @@ DM
 MR
 jF
 Eu
-wu
+hj
 wi
 MP
 aV
