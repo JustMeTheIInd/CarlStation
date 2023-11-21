@@ -18,3 +18,4 @@
 	icon_screen = "cargolaptop"
 	icon_keyboard = "laptop_key"
 	pass_flags = PASSTABLE
+
