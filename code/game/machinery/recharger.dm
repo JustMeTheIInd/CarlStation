@@ -120,22 +120,22 @@
 /obj/machinery/recharger/wrench_act(mob/living/user, obj/item/tool)
 	if(charging)
 		to_chat(user, span_notice("Remove the charging item first!"))
-		return ITEM_INTERACT_BLOCKING
+		return TOOL_ACT_SIGNAL_BLOCKING
 	set_anchored(!anchored)
 	power_change()
 	to_chat(user, span_notice("You [anchored ? "attached" : "detached"] [src]."))
 	tool.play_tool_sound(src)
-	return ITEM_INTERACT_SUCCESS
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/recharger/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!anchored || charging)
-		return ITEM_INTERACT_BLOCKING
+		return TOOL_ACT_SIGNAL_BLOCKING
 	. = default_deconstruction_screwdriver(user, base_icon_state, base_icon_state, tool)
 	if(.)
 		update_appearance()
 
 /obj/machinery/recharger/crowbar_act(mob/living/user, obj/item/tool)
-	return (!anchored || charging) ? ITEM_INTERACT_BLOCKING : default_deconstruction_crowbar(tool)
+	return (!anchored || charging) ? TOOL_ACT_SIGNAL_BLOCKING : default_deconstruction_crowbar(tool)
 
 /obj/machinery/recharger/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -196,6 +196,13 @@
 		var/obj/item/melee/baton/security/batong = charging
 		if(batong.cell)
 			batong.cell.charge = 0
+
+/obj/machinery/recharger/update_appearance(updates)
+	. = ..()
+	if((machine_stat & (NOPOWER|BROKEN)) || panel_open || !anchored)
+		luminosity = 0
+		return
+	luminosity = 1
 
 /obj/machinery/recharger/update_overlays()
 	. = ..()

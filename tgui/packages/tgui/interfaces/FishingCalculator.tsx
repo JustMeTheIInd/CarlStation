@@ -1,5 +1,4 @@
 import { round } from 'common/math';
-
 import { useBackend, useLocalState } from '../backend';
 import { Button, Dropdown, Input, Stack, Table } from '../components';
 import { TableCell, TableRow } from '../components/Table';
@@ -20,17 +19,34 @@ type FishingCalculatorData = {
   spot_types: string[];
 };
 
-export const FishingCalculator = (props) => {
-  const { act, data } = useBackend<FishingCalculatorData>();
+export const FishingCalculator = (props, context) => {
+  const { act, data } = useBackend<FishingCalculatorData>(context);
 
   const [bait, setBait] = useLocalState<string>(
+    context,
     'bait',
-    '/obj/item/food/bait/worm',
+    '/obj/item/food/bait/worm'
   );
-  const [spot, setSpot] = useLocalState<string>('spot', data.spot_types[0]);
-  const [rod, setRod] = useLocalState<string>('rod', data.rod_types[0]);
-  const [hook, setHook] = useLocalState<string>('hook', data.hook_types[0]);
-  const [line, setLine] = useLocalState<string>('line', data.line_types[0]);
+  const [spot, setSpot] = useLocalState<string>(
+    context,
+    'spot',
+    data.spot_types[0]
+  );
+  const [rod, setRod] = useLocalState<string>(
+    context,
+    'rod',
+    data.rod_types[0]
+  );
+  const [hook, setHook] = useLocalState<string>(
+    context,
+    'hook',
+    data.hook_types[0]
+  );
+  const [line, setLine] = useLocalState<string>(
+    context,
+    'line',
+    data.line_types[0]
+  );
 
   const weight_sum = data.info?.reduce((s, w) => s + w.weight, 0) || 1;
 
@@ -65,21 +81,20 @@ export const FishingCalculator = (props) => {
             />
             <Input
               value={bait}
-              placeholder="Bait"
+              label="Bait"
               onChange={(_, value) => setBait(value)}
               width="100%"
             />
             <Button
               onClick={() =>
                 act('recalc', {
-                  rod: rod,
-                  bait: bait,
-                  hook: hook,
-                  line: line,
-                  spot: spot,
+                  'rod': rod,
+                  'bait': bait,
+                  'hook': hook,
+                  'line': line,
+                  'spot': spot,
                 })
-              }
-            >
+              }>
               Calculate
             </Button>
           </Stack.Item>

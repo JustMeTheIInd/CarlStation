@@ -8,7 +8,7 @@
 	icon_state = "revolver"
 	inhand_icon_state = "gun"
 	worn_icon_state = "gun"
-	obj_flags = CONDUCTS_ELECTRICITY
+	flags_1 = CONDUCT_1
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE|KEEP_TOGETHER
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT)
@@ -271,8 +271,7 @@
 
 /obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
 	..()
-	fire_gun(target, user, flag, params)
-	return AFTERATTACK_PROCESSED_ITEM
+	return fire_gun(target, user, flag, params) | AFTERATTACK_PROCESSED_ITEM
 
 /obj/item/gun/proc/fire_gun(atom/target, mob/living/user, flag, params)
 	if(QDELETED(target))
@@ -404,7 +403,6 @@
 	update_appearance()
 	return TRUE
 
-///returns true if the gun successfully fires
 /obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	var/base_bonus_spread = 0
 	if(user)
@@ -514,7 +512,7 @@
 
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(bayonet)
-		return ITEM_INTERACT_SUCCESS
+		return TOOL_ACT_TOOLTYPE_SUCCESS
 
 	else if(pin?.pin_removable && user.is_holding(src))
 		user.visible_message(span_warning("[user] attempts to remove [pin] from [src] with [I]."),
@@ -525,7 +523,7 @@
 			user.visible_message(span_notice("[pin] is pried out of [src] by [user], destroying the pin in the process."),
 								span_warning("You pry [pin] out with [I], destroying the pin in the process."), null, 3)
 			QDEL_NULL(pin)
-			return ITEM_INTERACT_SUCCESS
+			return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/item/gun/welder_act(mob/living/user, obj/item/I)
 	. = ..()

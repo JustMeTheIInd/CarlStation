@@ -177,9 +177,8 @@
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	return TRUE
 
-/turf/open/floor/plating/foam/item_interaction(mob/living/user, obj/item/tool, list/modifiers, is_right_clicking)
-	SHOULD_CALL_PARENT(FALSE)
-	return NONE // Fuck you
+/turf/open/floor/plating/foam/tool_act(mob/living/user, obj/item/tool, tool_type, is_right_clicking)
+	return
 
 //reinforced plating deconstruction states
 #define PLATE_INTACT 0

@@ -13,7 +13,7 @@
 		return COMPONENT_INCOMPATIBLE
 	src.range_modifier = range_modifier
 
-/datum/component/scope/Destroy(force)
+/datum/component/scope/Destroy(force, silent)
 	if(tracker)
 		stop_zooming(tracker.owner)
 	return ..()

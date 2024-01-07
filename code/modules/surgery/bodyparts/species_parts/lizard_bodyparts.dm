@@ -14,7 +14,6 @@
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
 	unarmed_attack_verb = "slash"
-	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -23,7 +22,6 @@
 	icon_greyscale = 'icons/mob/human/species/lizard/bodyparts.dmi'
 	limb_id = SPECIES_LIZARD
 	unarmed_attack_verb = "slash"
-	grappled_attack_verb = "lacerate"
 	unarmed_attack_effect = ATTACK_EFFECT_CLAW
 	unarmed_attack_sound = 'sound/weapons/slash.ogg'
 	unarmed_miss_sound = 'sound/weapons/slashmiss.ogg'

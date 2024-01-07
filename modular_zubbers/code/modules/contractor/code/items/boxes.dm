@@ -1,4 +1,4 @@
-/* /obj/item/storage/box/syndicate/contract_kit/midround // rip contractor ?
+/obj/item/storage/box/syndicate/contract_kit/midround
 // bubber edits
 // removed items: dartgun, edagger, sleepy pen, mulligan, sentience potion, radio implant, tackle gloves, rad laser
 	item_list = list(
@@ -18,4 +18,3 @@
 		/obj/item/storage/box/syndie_kit/emp,
 		/obj/item/shield/energy
 	)
- */

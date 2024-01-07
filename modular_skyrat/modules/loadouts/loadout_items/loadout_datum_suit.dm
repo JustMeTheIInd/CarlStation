@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 	item_path = /obj/item/clothing/suit/koreacoat
 
 /datum/loadout_item/suit/czech
-	name = "Czech Winter Coat"
+	name = "Modern Winter Coat"
 	item_path = /obj/item/clothing/suit/modernwintercoatthing
 
 /datum/loadout_item/suit/mantella
@@ -273,6 +273,7 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 /datum/loadout_item/suit/winter_coat/christmas
 	name = "Christmas Coat"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/skyrat/christmas
+	required_season = CHRISTMAS
 
 /datum/loadout_item/suit/winter_coat/christmas/green
 	name = "Green Christmas Coat"
@@ -588,7 +589,7 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 /datum/loadout_item/suit/navybluejacketofficer
 	name = "Security Officer's Navy Blue Formal Jacket"
 	item_path = /obj/item/clothing/suit/jacket/officer/blue
-	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_WARDEN)
+	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_SECURITY_MEDIC, JOB_WARDEN) //BUBBER EDIT
 
 /datum/loadout_item/suit/navybluejacketwarden
 	name = "Warden's Navy Blue Formal Jacket"
@@ -603,12 +604,12 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 /datum/loadout_item/suit/security_jacket
 	name = "Security Jacket"
 	item_path = /obj/item/clothing/suit/toggle/jacket/sec
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE)
+	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_SECURITY_MEDIC, JOB_WARDEN, JOB_DETECTIVE) //BUBBER EDIT
 
 /datum/loadout_item/suit/brit
 	name = "High Vis Armored Vest"
 	item_path = /obj/item/clothing/suit/armor/vest/peacekeeper/brit
-	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
+	restricted_roles = list(JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_SECURITY_MEDIC, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER) //BUBBER EDIT
 
 /datum/loadout_item/suit/british_jacket
 	name = "Peacekeeper Officer Coat"
@@ -653,7 +654,7 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 /datum/loadout_item/suit/labcoat_highvis
 	name = "High-Vis Labcoat"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/highvis
-	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER, JOB_PARAMEDIC, JOB_ATMOSPHERIC_TECHNICIAN, JOB_DETECTIVE, JOB_CHEMIST, JOB_ORDERLY)
+	restricted_roles = list(JOB_CHIEF_MEDICAL_OFFICER, JOB_PARAMEDIC, JOB_ATMOSPHERIC_TECHNICIAN, JOB_SECURITY_MEDIC, JOB_DETECTIVE, JOB_CHEMIST, JOB_ORDERLY) //BUBBER EDIT
 
 /*
 *	FAMILIES

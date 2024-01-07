@@ -1,31 +1,23 @@
 import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { capitalize } from 'common/string';
-
 import { useBackend, useLocalState } from '../backend';
-import {
-  Box,
-  Button,
-  Dropdown,
-  Input,
-  NoticeBox,
-  Section,
-  Stack,
-  Table,
-  TextArea,
-} from '../components';
+import { Box, Button, Dropdown, Input, NoticeBox, Section, Stack, Table, TextArea } from '../components';
 import { Window } from '../layouts';
 import { PageSelect } from './LibraryConsole';
 
-export const LibraryAdmin = (props) => {
-  const [modifyMethod, setModifyMethod] = useLocalState('ModifyMethod', null);
+export const LibraryAdmin = (props, context) => {
+  const [modifyMethod, setModifyMethod] = useLocalState(
+    context,
+    'ModifyMethod',
+    null
+  );
   return (
     <Window
       title="Admin Library Console"
       theme="admin"
       width={800}
-      height={600}
-    >
+      height={600}>
       {modifyMethod ? <ModifyPage /> : <BookListing />}
     </Window>
   );
@@ -38,8 +30,8 @@ type ListingData = {
   page_count: number;
 };
 
-const BookListing = (props) => {
-  const { act, data } = useBackend<ListingData>();
+const BookListing = (props, context) => {
+  const { act, data } = useBackend<ListingData>(context);
   const { can_connect, can_db_request, our_page, page_count } = data;
   if (!can_connect) {
     return (
@@ -102,10 +94,18 @@ type DisplayData = {
   pages: Book[];
 };
 
-const SearchAndDisplay = (props) => {
-  const { act, data } = useBackend<DisplayData>();
-  const [modifyMethod, setModifyMethod] = useLocalState('ModifyMethod', '');
-  const [modifyTarget, setModifyTarget] = useLocalState('ModifyTarget', 0);
+const SearchAndDisplay = (props, context) => {
+  const { act, data } = useBackend<DisplayData>(context);
+  const [modifyMethod, setModifyMethod] = useLocalState(
+    context,
+    'ModifyMethod',
+    ''
+  );
+  const [modifyTarget, setModifyTarget] = useLocalState(
+    context,
+    'ModifyTarget',
+    0
+  );
   const {
     can_db_request,
     search_categories = [],
@@ -135,7 +135,7 @@ const SearchAndDisplay = (props) => {
             <Stack.Item>
               <Input
                 value={book_id}
-                placeholder={book_id === null ? 'ID' : String(book_id)}
+                placeholder={book_id === null ? 'ID' : book_id}
                 width="70px"
                 onChange={(e, value) =>
                   act('set_search_id', {
@@ -201,8 +201,7 @@ const SearchAndDisplay = (props) => {
                 textAlign="right"
                 onClick={() => act('refresh')}
                 color={params_changed ? 'good' : ''}
-                icon="rotate-right"
-              >
+                icon="rotate-right">
                 Refresh
               </Button>
               <Button
@@ -210,8 +209,7 @@ const SearchAndDisplay = (props) => {
                 textAlign="right"
                 onClick={() => act('clear_data')}
                 color="bad"
-                icon="fire"
-              >
+                icon="fire">
                 Reset Search
               </Button>
             </Stack.Item>
@@ -252,8 +250,7 @@ const SearchAndDisplay = (props) => {
                     book_id: book.id,
                   })
                 }
-                icon="book-reader"
-              >
+                icon="book-reader">
                 {book.id}
               </Button>
             </Table.Cell>
@@ -272,8 +269,7 @@ const SearchAndDisplay = (props) => {
                     });
                   }}
                   icon="undo"
-                  color="blue"
-                >
+                  color="blue">
                   Restore
                 </Button>
               ) : (
@@ -286,8 +282,7 @@ const SearchAndDisplay = (props) => {
                     });
                   }}
                   icon="hammer"
-                  color="violet"
-                >
+                  color="violet">
                   Delete
                 </Button>
               )}
@@ -331,13 +326,21 @@ type ModalData = {
   history: HistoryArray;
 };
 
-const ModifyPage = (props) => {
-  const { act, data } = useBackend<ModalData>();
+const ModifyPage = (props, context) => {
+  const { act, data } = useBackend<ModalData>(context);
 
   const { can_db_request, view_raw, history } = data;
-  const [modifyMethod, setModifyMethod] = useLocalState('ModifyMethod', '');
-  const [modifyTarget, setModifyTarget] = useLocalState('ModifyTarget', 0);
-  const [reason, setReason] = useLocalState('Reason', 'null');
+  const [modifyMethod, setModifyMethod] = useLocalState(
+    context,
+    'ModifyMethod',
+    ''
+  );
+  const [modifyTarget, setModifyTarget] = useLocalState(
+    context,
+    'ModifyTarget',
+    0
+  );
+  const [reason, setReason] = useLocalState(context, 'Reason', 'null');
 
   const entries = history[modifyTarget.toString()]
     ? history[modifyTarget.toString()].sort((a, b) => b.id - a.id)
@@ -365,8 +368,7 @@ const ModifyPage = (props) => {
                 book_id: modifyTarget,
               })
             }
-            icon="book-reader"
-          >
+            icon="book-reader">
             View
           </Button>
         </Stack.Item>
@@ -446,8 +448,7 @@ const ModifyPage = (props) => {
         {entries.map((entry) => (
           <Table.Row
             key={entry.id}
-            backgroundColor={get_action_color(entry.action)}
-          >
+            backgroundColor={get_action_color(entry.action)}>
             <Table.Cell className="LibraryAdmin_RecordCell">
               {entry.id}
             </Table.Cell>
@@ -457,9 +458,8 @@ const ModifyPage = (props) => {
             <Table.Cell
               className="LibraryAdmin_RecordCell"
               style={{
-                whiteSpace: 'pre-wrap',
-              }}
-            >
+                'white-space': 'pre-wrap',
+              }}>
               {entry.reason}
             </Table.Cell>
             <Table.Cell className="LibraryAdmin_RecordCell">

@@ -28,7 +28,7 @@
 	previous_factions.Add(player.faction)
 	player.faction |= npc_factions
 
-/datum/component/npc_friendly/Destroy(force)
+/datum/component/npc_friendly/Destroy(force, silent)
 	. = ..()
 
 	var/mob/living/player = parent

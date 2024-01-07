@@ -48,7 +48,7 @@
 		SSpoints_of_interest.make_point_of_interest(parent)
 		generated_point_of_interest = TRUE
 
-/datum/component/deadchat_control/Destroy(force)
+/datum/component/deadchat_control/Destroy(force, silent)
 	on_removal?.Invoke()
 	inputs = null
 	orbiters = null

@@ -88,7 +88,7 @@
 	else
 		RegisterSignal(parent, COMSIG_ATOM_ENTERED, PROC_REF(Slip))
 
-/datum/component/slippery/Destroy(force)
+/datum/component/slippery/Destroy(force, silent)
 	can_slip_callback = null
 	on_slip_callback = null
 	holder = null
@@ -161,7 +161,7 @@
 		if(HAS_TRAIT(turf, TRAIT_TURF_IGNORE_SLIPPERY))
 			return
 	var/mob/living/victim = arrived
-	if(victim.movement_type & MOVETYPES_NOT_TOUCHING_GROUND)
+	if((victim.movement_type & (FLYING | FLOATING)))
 		return
 	if(can_slip_callback && !can_slip_callback.Invoke(holder, victim))
 		return

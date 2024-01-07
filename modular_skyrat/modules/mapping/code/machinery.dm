@@ -13,7 +13,7 @@
 
 /obj/item/gps/computer/space/wrench_act(mob/living/user, obj/item/I)
 	..()
-	if(obj_flags & NO_DECONSTRUCTION)
+	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 
 	user.visible_message(span_warning("[user] disassembles [src]."),

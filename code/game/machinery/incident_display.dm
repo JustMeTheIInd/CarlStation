@@ -165,7 +165,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/incident_display/tram, 32)
 	update_appearance()
 
 /obj/machinery/incident_display/deconstruct()
-	if(obj_flags & NO_DECONSTRUCTION)
+	if(flags_1 & NODECONSTRUCT_1)
 		return
 
 	new /obj/item/stack/sheet/mineral/titanium(drop_location(), 2)

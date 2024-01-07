@@ -73,7 +73,7 @@
 	return TRUE
 
 /obj/machinery/status_display/deconstruct(disassembled = TRUE)
-	if(obj_flags & NO_DECONSTRUCTION)
+	if(flags_1 & NODECONSTRUCT_1)
 		return
 	if(!disassembled)
 		new /obj/item/stack/sheet/iron(drop_location(), 2)

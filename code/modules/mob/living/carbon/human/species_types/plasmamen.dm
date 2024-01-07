@@ -2,20 +2,18 @@
 	name = "\improper Plasmaman"
 	plural_form = "Plasmamen"
 	id = SPECIES_PLASMAMAN
-	sexes = FALSE
+	sexes = TRUE // BUBBER EDIT
 	meat = /obj/item/stack/sheet/mineral/plasma
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place
 	inherent_traits = list(
 		TRAIT_GENELESS,
 		TRAIT_HARDLY_WOUNDED,
-		TRAIT_NOBLOOD,
-		TRAIT_NO_DNA_COPY,
-		TRAIT_NO_PLASMA_TRANSFORM,
 		TRAIT_RADIMMUNE,
 		TRAIT_RESISTCOLD,
-		TRAIT_UNHUSKABLE,
+		TRAIT_NOBLOOD,
+		TRAIT_NO_DNA_COPY,
+		TRAIT_NO_TRANSFORMATION_STING,
 	)
-
 
 	inherent_biotypes = MOB_HUMANOID|MOB_MINERAL
 	inherent_respiration_type = RESPIRATION_PLASMA

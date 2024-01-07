@@ -1,8 +1,10 @@
 import { useBackend } from '../backend';
 import { Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
-import { Objective, ObjectivePrintout } from './common/Objectives';
+import { ObjectivePrintout, Objective } from './common/Objectives';
+// SKYRAT EDIT BEGIN
+import { Rules } from './AntagInfoRules';
+// SKYRAT EDIT END
 
 type Info = {
   antag_name: string;
@@ -10,8 +12,8 @@ type Info = {
 };
 
 // SKYRAT EDIT increase height from 250 to 500
-export const AntagInfoGeneric = (props) => {
-  const { data } = useBackend<Info>();
+export const AntagInfoGeneric = (props, context) => {
+  const { data } = useBackend<Info>(context);
   const { antag_name, objectives } = data;
   return (
     <Window width={620} height={500}>

@@ -104,6 +104,3 @@
 
 /obj/item/organ/external/wings/functional/robotic
 	bodypart_overlay = /datum/bodypart_overlay/mutant/wings/functional
-
-/obj/item/organ/external/wings/functional/slime
-	bodypart_overlay = /datum/bodypart_overlay/mutant/wings/functional

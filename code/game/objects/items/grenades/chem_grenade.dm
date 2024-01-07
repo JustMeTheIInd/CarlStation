@@ -295,7 +295,7 @@
 
 		if(istype(thing, /obj/item/slime_extract))
 			var/obj/item/slime_extract/extract = thing
-			if(!extract.extract_uses)
+			if(!extract.Uses)
 				continue
 
 			extract_total_volume += extract.reagents.total_volume

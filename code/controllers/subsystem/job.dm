@@ -94,18 +94,6 @@ SUBSYSTEM_DEF(job)
 	set_overflow_role(CONFIG_GET(string/overflow_job)) // this must always go after load_jobs_from_config() due to how the legacy systems operate, this always takes precedent.
 	return SS_INIT_SUCCESS
 
-/// Returns a list of jobs that we are allowed to fuck with during random events
-/datum/controller/subsystem/job/proc/get_valid_overflow_jobs()
-	var/static/list/overflow_jobs
-	if (!isnull(overflow_jobs))
-		return overflow_jobs
-
-	overflow_jobs = list()
-	for (var/datum/job/check_job in joinable_occupations)
-		if (!check_job.allow_bureaucratic_error)
-			continue
-		overflow_jobs += check_job
-	return overflow_jobs
 
 /datum/controller/subsystem/job/proc/set_overflow_role(new_overflow_role)
 	var/datum/job/new_overflow = ispath(new_overflow_role) ? GetJobType(new_overflow_role) : GetJob(new_overflow_role)
@@ -604,8 +592,8 @@ SUBSYSTEM_DEF(job)
 	var/ssc = CONFIG_GET(number/security_scaling_coeff)
 	if(ssc > 0)
 		if(J.spawn_positions > 0)
-			// SKYRAT EDIT - Reduced from 12 max sec to 7 max sec due to departmental security being deactivated and replaced. //BUBBER EDIT REMOVAL: Raised to 10 max sec.
-			var/officer_positions = min(10, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 12 officers
+			// SKYRAT EDIT - Reduced from 12 max sec to 7 max sec due to departmental security being deactivated and replaced.
+			var/officer_positions = min(7, max(J.spawn_positions, round(unassigned.len / ssc))) //Scale between configured minimum and 12 officers
 			JobDebug("Setting open security officer positions to [officer_positions]")
 			J.total_positions = officer_positions
 			J.spawn_positions = officer_positions
@@ -767,7 +755,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/get_living_heads()
 	. = list()
 	for(var/datum/mind/head as anything in get_crewmember_minds())
-		if(!(head.assigned_role.job_flags & JOB_HEAD_OF_STAFF))
+		if(!(head.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND))
 			continue
 		if(isnull(head.current) || head.current.stat == DEAD)
 			continue
@@ -777,7 +765,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/get_all_heads()
 	. = list()
 	for(var/datum/mind/head as anything in get_crewmember_minds())
-		if(head.assigned_role.job_flags & JOB_HEAD_OF_STAFF)
+		if(head.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
 			. += head
 
 /// Returns a list of minds of all security members who are alive
@@ -917,7 +905,7 @@ SUBSYSTEM_DEF(job)
 		return JOB_UNAVAILABLE_AGE
 
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
-	if(!CONFIG_GET(flag/bypass_veteran_system) && possible_job.veteran_only && !SSplayer_ranks.is_veteran(player.client))
+	if(possible_job.veteran_only && !SSplayer_ranks.is_veteran(player.client))
 		JobDebug("[debug_prefix] Error: [get_job_unavailable_error_message(JOB_NOT_VETERAN)], Player: [player][add_job_to_log ? ", Job: [possible_job]" : ""]")
 		return JOB_NOT_VETERAN
 

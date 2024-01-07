@@ -53,8 +53,6 @@
 	var/list/jobs = list()
 
 	for (var/datum/job/job as anything in SSjob.joinable_occupations)
-		if (job.job_flags & JOB_LATEJOIN_ONLY)
-			continue
 		var/datum/job_department/department_type = job.department_for_prefs || job.departments_list?[1]
 		if (isnull(department_type))
 			stack_trace("[job] does not have a department set, yet is a joinable occupation!")
@@ -101,7 +99,7 @@
 /datum/preference_middleware/jobs/get_ui_static_data(mob/user)
 	var/list/data = list()
 	// SKYRAT EDIT
-	if(CONFIG_GET(flag/bypass_veteran_system) || SSplayer_ranks.is_veteran(user.client))
+	if(SSplayer_ranks.is_veteran(user.client))
 		data["is_veteran"] = TRUE
 	// SKYRAT EDIT END
 	// BUBBER EDIT BEGIN
@@ -124,8 +122,6 @@
 	var/list/job_required_experience = list()
 
 	for (var/datum/job/job as anything in SSjob.all_occupations)
-		if (job.job_flags & JOB_LATEJOIN_ONLY)
-			continue
 		var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 		if (required_playtime_remaining)
 			job_required_experience[job.title] = list(

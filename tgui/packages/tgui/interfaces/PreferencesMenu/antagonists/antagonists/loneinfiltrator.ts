@@ -1,6 +1,4 @@
-// THIS IS A SKYRAT UI FILE
 import { multiline } from 'common/string';
-
 import { Antagonist, Category } from '../base';
 
 const LoneInfiltrator: Antagonist = {

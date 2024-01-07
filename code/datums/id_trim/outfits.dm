@@ -69,7 +69,6 @@
 	trim_state = "trim_deathcommando"
 	department_color = COLOR_BLACK
 	subdepartment_color = COLOR_GREEN
-	threat_modifier = -1 // Cops recognise cops
 
 /datum/id_trim/cyber_police/New()
 	. = ..()

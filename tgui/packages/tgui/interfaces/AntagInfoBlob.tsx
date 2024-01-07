@@ -1,15 +1,11 @@
 import { useBackend } from '../backend';
-import {
-  Box,
-  Collapsible,
-  Divider,
-  LabeledList,
-  Section,
-  Stack,
-} from '../components';
-import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
+import { Box, Collapsible, Divider, LabeledList, Section, Stack } from '../components';
 import { Objective } from './common/Objectives';
+// SKYRAT EDIT BEGIN
+import { Rules } from './AntagInfoRules';
+// SKYRAT EDIT END
+
+import { Window } from '../layouts';
 
 type Data = {
   color: string;
@@ -21,7 +17,7 @@ type Data = {
 
 const BLOB_COLOR = '#556b2f';
 
-export const AntagInfoBlob = (props) => {
+export const AntagInfoBlob = (props, context) => {
   return (
     <Window width={400} height={550}>
       <Window.Content>
@@ -39,8 +35,8 @@ export const AntagInfoBlob = (props) => {
   );
 };
 
-const Overview = (props) => {
-  const { data } = useBackend<Data>();
+const Overview = (props, context) => {
+  const { data } = useBackend<Data>(context);
   const { color, description, effects, name } = data;
 
   if (!name) {
@@ -67,8 +63,7 @@ const Overview = (props) => {
         <span
           style={{
             color,
-          }}
-        >
+          }}>
           {name}
         </span>
       </Stack.Item>
@@ -77,8 +72,7 @@ const Overview = (props) => {
         <span
           style={{
             color,
-          }}
-        >
+          }}>
           {name}
         </span>{' '}
         reagent {description}
@@ -89,8 +83,7 @@ const Overview = (props) => {
           <span
             style={{
               color,
-            }}
-          >
+            }}>
             {name}
           </span>{' '}
           reagent {effects}
@@ -100,7 +93,7 @@ const Overview = (props) => {
   );
 };
 
-const Basics = (props) => {
+const Basics = (props, context) => {
   return (
     <Collapsible title="The Basics">
       <LabeledList>
@@ -129,7 +122,7 @@ const Basics = (props) => {
   );
 };
 
-const Minions = (props) => {
+const Minions = (props, context) => {
   return (
     <Collapsible title="Minions">
       <LabeledList>
@@ -148,7 +141,7 @@ const Minions = (props) => {
   );
 };
 
-const Structures = (props) => {
+const Structures = (props, context) => {
   return (
     <Collapsible title="Structures">
       <Box>
@@ -184,8 +177,8 @@ const Structures = (props) => {
   );
 };
 
-const ObjectiveDisplay = (props) => {
-  const { data } = useBackend<Data>();
+const ObjectiveDisplay = (props, context) => {
+  const { data } = useBackend<Data>(context);
   const { color, objectives } = data;
 
   return (
@@ -195,8 +188,7 @@ const ObjectiveDisplay = (props) => {
           <LabeledList.Item
             color={color ?? 'white'}
             key={index}
-            label={(index + 1).toString()}
-          >
+            label={(index + 1).toString()}>
             {explanation}
           </LabeledList.Item>
         ))}

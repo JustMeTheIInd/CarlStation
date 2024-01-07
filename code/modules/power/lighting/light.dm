@@ -5,6 +5,7 @@
 	icon_state = "tube"
 	desc = "A lighting fixture."
 	layer = WALL_OBJ_LAYER
+	plane = GAME_PLANE_UPPER
 	max_integrity = 100
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.02
@@ -72,9 +73,7 @@
 	///The minimum value for the light's power in low power mode
 	var/bulb_low_power_pow_min = 0.5
 	///The Light range to use when working in fire alarm status
-	var/fire_brightness = 9
-	///The Light power to use when working in fire alarm status
-	var/fire_power = 0.5
+	var/fire_brightness = 4
 	///The Light colour to use when working in fire alarm status
 	var/fire_colour = COLOR_FIRE_LIGHT_RED
 
@@ -231,7 +230,6 @@
 		var/area/local_area = get_room_area()
 		if (local_area?.fire)
 			color_set = fire_colour
-			power_set = fire_power
 			brightness_set = fire_brightness
 		else if (nightshift_enabled)
 			brightness_set = nightshift_brightness
@@ -407,13 +405,13 @@
 		deconstruct()
 		return
 	to_chat(user, span_userdanger("You stick \the [tool] into the light socket!"))
-	if(has_power() && (tool.obj_flags & CONDUCTS_ELECTRICITY))
+	if(has_power() && (tool.flags_1 & CONDUCT_1))
 		do_sparks(3, TRUE, src)
 		if (prob(75))
 			electrocute_mob(user, get_area(src), src, (rand(7,10) * 0.1), TRUE)
 
 /obj/machinery/light/deconstruct(disassembled = TRUE)
-	if(obj_flags & NO_DECONSTRUCTION)
+	if(flags_1 & NODECONSTRUCT_1)
 		qdel(src)
 		return
 	var/obj/structure/light_construct/new_light = null
@@ -450,7 +448,7 @@
 	..()
 	if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 		return
-	if(!on || !(attacking_object.obj_flags & CONDUCTS_ELECTRICITY))
+	if(!on || !(attacking_object.flags_1 & CONDUCT_1))
 		return
 	if(prob(12))
 		electrocute_mob(user, get_area(src), src, 0.3, TRUE)
@@ -750,7 +748,7 @@
 	light_type = /obj/item/light/bulb
 	fitting = "bulb"
 	nightshift_brightness = 3
-	fire_brightness = 4.5
+	fire_brightness = 2
 
 /obj/machinery/light/floor/get_light_offset()
 	return list(0, 0)

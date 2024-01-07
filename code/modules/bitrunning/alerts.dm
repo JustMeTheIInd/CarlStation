@@ -9,8 +9,7 @@
 	timeout = 20 SECONDS
 
 /atom/movable/screen/alert/bitrunning/qserver_domain_complete/Click(location, control, params)
-	. = ..()
-	if(!.)
+	if(..())
 		return
 
 	var/mob/living/living_owner = owner

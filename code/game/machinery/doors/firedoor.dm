@@ -24,6 +24,8 @@
 
 	COOLDOWN_DECLARE(activation_cooldown)
 
+	///Trick to get the glowing overlay visible from a distance
+	luminosity = 1
 	///X offset for the overlay lights, so that they line up with the thin border firelocks
 	var/light_xoffset = 0
 	///Y offset for the overlay lights, so that they line up with the thin border firelocks
@@ -494,17 +496,17 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 
 	if(boltslocked)
 		to_chat(user, span_notice("There are screws locking the bolts in place!"))
-		return ITEM_INTERACT_SUCCESS
+		return TOOL_ACT_TOOLTYPE_SUCCESS
 	tool.play_tool_sound(src)
 	user.visible_message(span_notice("[user] starts undoing [src]'s bolts..."), \
 		span_notice("You start unfastening [src]'s floor bolts..."))
 	if(!tool.use_tool(src, user, DEFAULT_STEP_TIME))
-		return ITEM_INTERACT_SUCCESS
+		return TOOL_ACT_TOOLTYPE_SUCCESS
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
 	user.visible_message(span_notice("[user] unfastens [src]'s bolts."), \
 		span_notice("You undo [src]'s floor bolts."))
 	deconstruct(TRUE)
-	return ITEM_INTERACT_SUCCESS
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/door/firedoor/screwdriver_act(mob/living/user, obj/item/tool)
 	if(operating || !welded)
@@ -513,7 +515,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 				span_notice("You [boltslocked ? "unlock" : "lock"] [src]'s floor bolts."))
 	tool.play_tool_sound(src)
 	boltslocked = !boltslocked
-	return ITEM_INTERACT_SUCCESS
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user, access_bypass = FALSE)
 	return
@@ -662,7 +664,7 @@ BUBBERSTATION CHANGE: FIRELOCKS ARE NO LONGER ARE FREE-THINKERS. */
 		correct_state() //So we should re-evaluate our state
 
 /obj/machinery/door/firedoor/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
+	if(!(flags_1 & NODECONSTRUCT_1))
 		var/turf/targetloc = get_turf(src)
 		if(disassembled || prob(40))
 			var/obj/structure/firelock_frame/unbuilt_lock = new assemblytype(targetloc)

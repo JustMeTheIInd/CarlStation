@@ -1,23 +1,9 @@
 import { BooleanLike } from 'common/react';
-import { Fragment } from 'react';
-
+import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import {
-  Box,
-  Button,
-  LabeledList,
-  Modal,
-  NumberInput,
-  Section,
-  Table,
-} from '../components';
+import { Box, Button, LabeledList, Modal, NumberInput, Section, Table } from '../components';
 import { Window } from '../layouts';
-import {
-  Scrubber,
-  ScrubberProps,
-  Vent,
-  VentProps,
-} from './common/AtmosControls';
+import { Scrubber, ScrubberProps, Vent, VentProps } from './common/AtmosControls';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 type AirAlarmData = {
@@ -57,8 +43,8 @@ type AirAlarmData = {
   thresholdTypeMap: Record<string, number>;
 };
 
-export const AirAlarm = (props) => {
-  const { act, data } = useBackend<AirAlarmData>();
+export const AirAlarm = (props, context) => {
+  const { act, data } = useBackend<AirAlarmData>(context);
   const locked = data.locked && !data.siliconUser;
   return (
     <Window width={475} height={650}>
@@ -71,8 +57,8 @@ export const AirAlarm = (props) => {
   );
 };
 
-const AirAlarmStatus = (props) => {
-  const { data } = useBackend<AirAlarmData>();
+const AirAlarmStatus = (props, context) => {
+  const { data } = useBackend<AirAlarmData>(context);
   const { envData } = data;
   const dangerMap = {
     0: {
@@ -100,8 +86,7 @@ const AirAlarmStatus = (props) => {
                 <LabeledList.Item
                   key={entry.name}
                   label={entry.name}
-                  color={status.color}
-                >
+                  color={status.color}>
                   {entry.value}
                 </LabeledList.Item>
               );
@@ -111,8 +96,7 @@ const AirAlarmStatus = (props) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Area status"
-              color={data.atmosAlarm || data.fireAlarm ? 'bad' : 'good'}
-            >
+              color={data.atmosAlarm || data.fireAlarm ? 'bad' : 'good'}>
               {(data.atmosAlarm && 'Atmosphere Alarm') ||
                 (data.fireAlarm && 'Fire Alarm') ||
                 'Nominal'}
@@ -158,8 +142,8 @@ const AIR_ALARM_ROUTES = {
 
 type Screen = keyof typeof AIR_ALARM_ROUTES;
 
-const AirAlarmControl = (props) => {
-  const [screen, setScreen] = useLocalState<Screen>('screen', 'home');
+const AirAlarmControl = (props, context) => {
+  const [screen, setScreen] = useLocalState<Screen>(context, 'screen', 'home');
   const route = AIR_ALARM_ROUTES[screen] || AIR_ALARM_ROUTES.home;
   const Component = route.component();
   return (
@@ -173,8 +157,7 @@ const AirAlarmControl = (props) => {
             onClick={() => setScreen('home')}
           />
         )
-      }
-    >
+      }>
       <Component />
     </Section>
   );
@@ -183,9 +166,9 @@ const AirAlarmControl = (props) => {
 //  Home screen
 // --------------------------------------------------------
 
-const AirAlarmControlHome = (props) => {
-  const { act, data } = useBackend<AirAlarmData>();
-  const [screen, setScreen] = useLocalState<Screen>('screen', 'home');
+const AirAlarmControlHome = (props, context) => {
+  const { act, data } = useBackend<AirAlarmData>(context);
+  const [screen, setScreen] = useLocalState<Screen>(context, 'screen', 'home');
   const {
     selectedModePath,
     panicSiphonPath,
@@ -255,8 +238,8 @@ const AirAlarmControlHome = (props) => {
 //  Vents
 // --------------------------------------------------------
 
-const AirAlarmControlVents = (props) => {
-  const { data } = useBackend<AirAlarmData>();
+const AirAlarmControlVents = (props, context) => {
+  const { data } = useBackend<AirAlarmData>(context);
   const { vents } = data;
   if (!vents || vents.length === 0) {
     return <span>Nothing to show</span>;
@@ -273,8 +256,8 @@ const AirAlarmControlVents = (props) => {
 //  Scrubbers
 // --------------------------------------------------------
 
-const AirAlarmControlScrubbers = (props) => {
-  const { data } = useBackend<AirAlarmData>();
+const AirAlarmControlScrubbers = (props, context) => {
+  const { data } = useBackend<AirAlarmData>(context);
   const { scrubbers } = data;
   if (!scrubbers || scrubbers.length === 0) {
     return <span>Nothing to show</span>;
@@ -291,8 +274,8 @@ const AirAlarmControlScrubbers = (props) => {
 //  Modes
 // --------------------------------------------------------
 
-const AirAlarmControlModes = (props) => {
-  const { act, data } = useBackend<AirAlarmData>();
+const AirAlarmControlModes = (props, context) => {
+  const { act, data } = useBackend<AirAlarmData>(context);
   const { modes, selectedModePath } = data;
   if (!modes || modes.length === 0) {
     return <span>Nothing to show</span>;
@@ -332,15 +315,14 @@ type EditingModalProps = {
   finish: () => void;
 };
 
-const EditingModal = (props: EditingModalProps) => {
-  const { act, data } = useBackend<AirAlarmData>();
+const EditingModal = (props: EditingModalProps, context) => {
+  const { act, data } = useBackend<AirAlarmData>(context);
   const { id, name, type, typeVar, typeName, unit, oldValue, finish } = props;
   return (
     <Modal>
       <Section
         title={'Threshold Value Editor'}
-        buttons={<Button onClick={() => finish()} icon="times" color="red" />}
-      >
+        buttons={<Button onClick={() => finish()} icon="times" color="red" />}>
         <Box mb={1.5}>
           {`Editing the ${typeName.toLowerCase()} value for ${name.toLowerCase()}...`}
         </Box>
@@ -352,8 +334,7 @@ const EditingModal = (props: EditingModalProps) => {
                 threshold_type: type,
                 value: 0,
               })
-            }
-          >
+            }>
             {'Enable'}
           </Button>
         ) : (
@@ -379,8 +360,7 @@ const EditingModal = (props: EditingModalProps) => {
                   threshold_type: type,
                   value: -1,
                 })
-              }
-            >
+              }>
               {'Disable'}
             </Button>
           </>
@@ -390,12 +370,12 @@ const EditingModal = (props: EditingModalProps) => {
   );
 };
 
-const AirAlarmControlThresholds = (props) => {
-  const { act, data } = useBackend<AirAlarmData>();
+const AirAlarmControlThresholds = (props, context) => {
+  const { act, data } = useBackend<AirAlarmData>(context);
   const [activeModal, setActiveModal] = useLocalState<Omit<
     EditingModalProps,
     'oldValue'
-  > | null>('tlvModal', null);
+  > | null>(context, 'tlvModal', null);
   const { tlvSettings, thresholdTypeMap } = data;
   return (
     <>
@@ -432,8 +412,7 @@ const AirAlarmControlThresholds = (props) => {
                     unit: tlv.unit,
                     finish: () => setActiveModal(null),
                   })
-                }
-              >
+                }>
                 {tlv.hazard_min === -1
                   ? 'Disabled'
                   : tlv.hazard_min + ' ' + tlv.unit}
@@ -452,8 +431,7 @@ const AirAlarmControlThresholds = (props) => {
                     unit: tlv.unit,
                     finish: () => setActiveModal(null),
                   })
-                }
-              >
+                }>
                 {tlv.warning_min === -1
                   ? 'Disabled'
                   : tlv.warning_min + ' ' + tlv.unit}
@@ -472,8 +450,7 @@ const AirAlarmControlThresholds = (props) => {
                     unit: tlv.unit,
                     finish: () => setActiveModal(null),
                   })
-                }
-              >
+                }>
                 {tlv.warning_max === -1
                   ? 'Disabled'
                   : tlv.warning_max + ' ' + tlv.unit}
@@ -492,8 +469,7 @@ const AirAlarmControlThresholds = (props) => {
                     unit: tlv.unit,
                     finish: () => setActiveModal(null),
                   })
-                }
-              >
+                }>
                 {tlv.hazard_max === -1
                   ? 'Disabled'
                   : tlv.hazard_max + ' ' + tlv.unit}

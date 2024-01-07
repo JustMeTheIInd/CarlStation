@@ -10,13 +10,11 @@
 **/
 /mob/living/proc/gib(drop_bitflags=NONE)
 	var/prev_lying = lying_angle
-	spawn_gibs(drop_bitflags)
+	if(stat != DEAD)
+		death(TRUE)
 
 	if(!prev_lying)
 		gib_animation()
-
-	if(stat != DEAD)
-		death(TRUE)
 
 	ghostize()
 	spill_organs(drop_bitflags)
@@ -24,6 +22,7 @@
 	if(drop_bitflags & DROP_BODYPARTS)
 		spread_bodyparts(drop_bitflags)
 
+	spawn_gibs(drop_bitflags)
 	SEND_SIGNAL(src, COMSIG_LIVING_GIBBED, drop_bitflags)
 	qdel(src)
 

@@ -1005,7 +1005,7 @@
 	if(istype(old_loc, /obj/item/storage/wallet))
 		UnregisterSignal(old_loc, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
-	if(istype(old_loc, /obj/item/modular_computer))
+	if(istype(old_loc, /obj/item/modular_computer/pda))
 		UnregisterSignal(old_loc, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 	//New loc
@@ -1013,7 +1013,7 @@
 		RegisterSignal(loc, COMSIG_ITEM_EQUIPPED, PROC_REF(update_intern_status))
 		RegisterSignal(loc, COMSIG_ITEM_DROPPED, PROC_REF(remove_intern_status))
 
-	if(istype(loc, /obj/item/modular_computer))
+	if(istype(loc, /obj/item/modular_computer/pda))
 		RegisterSignal(loc, COMSIG_ITEM_EQUIPPED, PROC_REF(update_intern_status))
 		RegisterSignal(loc, COMSIG_ITEM_DROPPED, PROC_REF(remove_intern_status))
 

@@ -1,5 +1,4 @@
-// THIS IS A SKYRAT UI FILE
-import { CheckboxInput, FeatureToggle } from '../../base';
+import { FeatureToggle, CheckboxInput } from '../../base';
 
 export const ticket_ping_pref: FeatureToggle = {
   name: 'Ticket ping',

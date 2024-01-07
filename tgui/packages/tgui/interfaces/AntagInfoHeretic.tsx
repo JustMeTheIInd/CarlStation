@@ -1,15 +1,11 @@
-import { BooleanLike } from 'common/react';
-import { useState } from 'react';
-
-import { useBackend } from '../backend';
-import { BlockQuote, Box, Button, Section, Stack, Tabs } from '../components';
+import { useBackend, useLocalState } from '../backend';
+import { Section, Stack, Box, Tabs, Button, BlockQuote } from '../components';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
-import {
-  Objective,
-  ObjectivePrintout,
-  ReplaceObjectivesButton,
-} from './common/Objectives';
+import { BooleanLike } from 'common/react';
+import { ObjectivePrintout, Objective, ReplaceObjectivesButton } from './common/Objectives';
+// SKYRAT EDIT BEGIN
+import { Rules } from './AntagInfoRules';
+// SKYRAT EDIT END
 
 const hereticRed = {
   color: '#e03c3c',
@@ -59,8 +55,8 @@ type Info = {
   can_change_objective: BooleanLike;
 };
 
-const IntroductionSection = (props) => {
-  const { data, act } = useBackend<Info>();
+const IntroductionSection = (props, context) => {
+  const { data, act } = useBackend<Info>(context);
   const { objectives, ascended, can_change_objective } = data;
 
   return (
@@ -190,8 +186,8 @@ const GuideSection = () => {
   );
 };
 
-const InformationSection = (props) => {
-  const { data } = useBackend<Info>();
+const InformationSection = (props, context) => {
+  const { data } = useBackend<Info>(context);
   const { charges, total_sacrifices, ascended } = data;
   return (
     <Stack.Item>
@@ -226,8 +222,8 @@ const InformationSection = (props) => {
   );
 };
 
-const ResearchedKnowledge = (props) => {
-  const { data } = useBackend<KnowledgeInfo>();
+const ResearchedKnowledge = (props, context) => {
+  const { data } = useBackend<KnowledgeInfo>(context);
   const { learnedKnowledge } = data;
 
   return (
@@ -251,8 +247,8 @@ const ResearchedKnowledge = (props) => {
   );
 };
 
-const KnowledgeShop = (props) => {
-  const { data, act } = useBackend<KnowledgeInfo>();
+const KnowledgeShop = (props, context) => {
+  const { data, act } = useBackend<KnowledgeInfo>(context);
   const { learnableKnowledge } = data;
 
   return (
@@ -286,8 +282,8 @@ const KnowledgeShop = (props) => {
   );
 };
 
-const ResearchInfo = (props) => {
-  const { data } = useBackend<Info>();
+const ResearchInfo = (props, context) => {
+  const { data } = useBackend<Info>(context);
   const { charges } = data;
 
   return (
@@ -313,37 +309,34 @@ const ResearchInfo = (props) => {
   );
 };
 
-export const AntagInfoHeretic = (props) => {
-  const { data } = useBackend<Info>();
+export const AntagInfoHeretic = (props, context) => {
+  const { data } = useBackend<Info>(context);
   const { ascended } = data;
 
-  const [currentTab, setTab] = useState(0);
+  const [currentTab, setTab] = useLocalState(context, 'currentTab', 0);
 
   return (
     <Window width={675} height={635}>
       <Window.Content
         style={{
-          backgroundImage: 'none',
-          background: ascended
+          'background-image': 'none',
+          'background': ascended
             ? 'radial-gradient(circle, rgba(24,9,9,1) 54%, rgba(31,10,10,1) 60%, rgba(46,11,11,1) 80%, rgba(47,14,14,1) 100%);'
             : 'radial-gradient(circle, rgba(9,9,24,1) 54%, rgba(10,10,31,1) 60%, rgba(21,11,46,1) 80%, rgba(24,14,47,1) 100%);',
-        }}
-      >
+        }}>
         <Stack vertical fill>
           <Stack.Item>
             <Tabs fluid>
               <Tabs.Tab
                 icon="info"
                 selected={currentTab === 0}
-                onClick={() => setTab(0)}
-              >
+                onClick={() => setTab(0)}>
                 Information
               </Tabs.Tab>
               <Tabs.Tab
                 icon={currentTab === 1 ? 'book-open' : 'book'}
                 selected={currentTab === 1}
-                onClick={() => setTab(1)}
-              >
+                onClick={() => setTab(1)}>
                 Research
               </Tabs.Tab>
             </Tabs>

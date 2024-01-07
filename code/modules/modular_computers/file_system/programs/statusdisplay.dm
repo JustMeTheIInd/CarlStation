@@ -2,14 +2,15 @@
 	filename = "statusdisplay"
 	filedesc = "Status Display"
 	program_icon = "signal"
-	program_open_overlay = "generic"
+	program_icon_state = "generic"
+	requires_ntnet = TRUE
 	size = 1
 
 	extended_desc = "An app used to change the message on the station status displays."
 	tgui_id = "NtosStatus"
 
-	can_run_on_flags = PROGRAM_ALL
-	program_flags = PROGRAM_REQUIRES_NTNET
+	usage_flags = PROGRAM_ALL
+	available_on_ntnet = FALSE
 
 	var/upper_text = ""
 	var/lower_text = ""

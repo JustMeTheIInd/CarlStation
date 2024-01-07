@@ -1,14 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import {
-  Button,
-  Collapsible,
-  Input,
-  NoticeBox,
-  NumberInput,
-  Section,
-  Stack,
-  Tabs,
-} from '../components';
+import { NoticeBox, Section, Tabs, Input, Button, NumberInput, Stack, Collapsible } from '../components';
 import { Window } from '../layouts';
 
 type PthData = {
@@ -37,20 +28,21 @@ enum Pages {
   TicketHistory = 2,
 }
 
-export const PlayerTicketHistory = (props: any) => {
-  const { act, data } = useBackend<PthData>();
+export const PlayerTicketHistory = (props: any, context: any) => {
+  const { act, data } = useBackend<PthData>(context);
 
   const [page, setPage] = useLocalState(
+    context,
     'page',
-    data.target_ckey ? Pages.TicketHistory : Pages.Cache,
+    data.target_ckey ? Pages.TicketHistory : Pages.Cache
   );
 
-  const [cacheInput, setCacheInput] = useLocalState('cacheInput', '');
-  const [cacheCount, setCacheCount] = useLocalState('cacheCount', 5);
+  const [cacheInput, setCacheInput] = useLocalState(context, 'cacheInput', '');
+  const [cacheCount, setCacheCount] = useLocalState(context, 'cacheCount', 5);
 
   if (!data.db_connected) {
     return (
-      <Window title="Player Ticket History" width={300} height={300}>
+      <Window title="Player Ticket History">
         <Window.Content>
           <NoticeBox>The database is not connected.</NoticeBox>
         </Window.Content>
@@ -60,26 +52,21 @@ export const PlayerTicketHistory = (props: any) => {
 
   return (
     <Window
-      width={300}
-      height={300}
       title={`Player Ticket History${
         data.target_ckey ? ` - ${data.target_ckey}` : ''
-      }`}
-    >
+      }`}>
       <Window.Content>
         <Tabs>
           <Tabs.Tab
             key={Pages.Cache}
             selected={page === Pages.Cache}
-            onClick={() => setPage(Pages.Cache)}
-          >
+            onClick={() => setPage(Pages.Cache)}>
             Cache
           </Tabs.Tab>
           <Tabs.Tab
             key={Pages.TicketHistory}
             selected={page === Pages.TicketHistory}
-            onClick={() => setPage(Pages.TicketHistory)}
-          >
+            onClick={() => setPage(Pages.TicketHistory)}>
             Ticket History
           </Tabs.Tab>
         </Tabs>
@@ -97,8 +84,8 @@ export const PlayerTicketHistory = (props: any) => {
   );
 };
 
-const TicketHistory = (props: any) => {
-  const { act, data } = useBackend<PthData>();
+const TicketHistory = (props: any, context: any) => {
+  const { act, data } = useBackend<PthData>(context);
 
   if (data.ticket_cache === undefined) {
     return (
@@ -109,8 +96,9 @@ const TicketHistory = (props: any) => {
   }
 
   const [activeTicket, setActiveTicket] = useLocalState<TicketData | undefined>(
+    context,
     'ticket',
-    undefined,
+    undefined
   );
 
   // sory by round then ticket number, descending
@@ -138,8 +126,7 @@ const TicketHistory = (props: any) => {
                 }
                 onClick={() => {
                   setActiveTicket(ticket);
-                }}
-              >
+                }}>
                 {`${ticket.round_id} #${ticket.ticket_number}`}
               </Button>
             </Stack.Item>
@@ -163,8 +150,8 @@ type CacheProps = {
   setCacheCount: (value: number) => void;
 };
 
-const Cache = (props: CacheProps) => {
-  const { act, data } = useBackend<PthData>();
+const Cache = (props: CacheProps, context: any) => {
+  const { act, data } = useBackend<PthData>(context);
 
   return (
     <Section>
@@ -200,8 +187,7 @@ const Cache = (props: CacheProps) => {
             icon="user"
             onClick={() => {
               act('select-user', { target: ckey });
-            }}
-          >
+            }}>
             {ckey}
           </Button>
         ))}
@@ -214,9 +200,13 @@ type TicketViewProps = {
   ticket: TicketData;
 };
 
-const TicketView = (props: TicketViewProps) => {
-  const { act, data } = useBackend<PthData>();
-  const [forceExpand, setForceExpand] = useLocalState('forceExpand', false);
+const TicketView = (props: TicketViewProps, context: any) => {
+  const { act, data } = useBackend<PthData>(context);
+  const [forceExpand, setForceExpand] = useLocalState(
+    context,
+    'forceExpand',
+    false
+  );
 
   // sort by timestamp
   props.ticket.ticket_log.sort((a, b) => {
@@ -230,8 +220,7 @@ const TicketView = (props: TicketViewProps) => {
           icon={forceExpand ? 'compress' : 'expand'}
           onClick={() => setForceExpand(!forceExpand)}
         />
-      }
-    >
+      }>
       {props.ticket.ticket_log.map((log, index) => (
         <Collapsible
           tooltip={log.timestamp}
@@ -239,8 +228,7 @@ const TicketView = (props: TicketViewProps) => {
           key={`${props.ticket.round_id}-${props.ticket.ticket_number}-${index}`}
           title={`${log.action} - ${log.origin_ckey}${
             log.target_ckey ? ` -> ${log.target_ckey}` : ''
-          }`}
-        >
+          }`}>
           {log.message}
         </Collapsible>
       ))}

@@ -32,10 +32,10 @@
 	switch(vox_type)
 		if(VOX_NORMAL)
 			var/index = 0
-			for(var/word in GLOB.vox_sounds)
+			for(var/word in GLOB.vox_sounds_bms)
 				index++
 				dat += "<A href='?src=[REF(src)];say_word=[word]'>[capitalize(word)]</A>"
-				if(index != GLOB.vox_sounds.len)
+				if(index != GLOB.vox_sounds_bms.len)
 					dat += " / "
 		if(VOX_HL)
 			var/index = 0
