@@ -15,10 +15,6 @@
 #define TOWEL_WORN_ICON 'modular_skyrat/master_files/icons/mob/clothing/towel.dmi'
 /// Icon path to the worn icon of the towel for digitigrades.
 #define TOWEL_WORN_ICON_DIGI 'modular_skyrat/master_files/icons/mob/clothing/towel_digi.dmi'
-/// Icon path to the left-hand inhand icons of the towel.
-#define TOWEL_LEFTHAND_ICON 'modular_skyrat/master_files/icons/mob/inhands/clothing/towel_lefthand.dmi'
-/// Icon path to the right-hand inhand icons of the towel.
-#define TOWEL_RIGHTHAND_ICON 'modular_skyrat/master_files/icons/mob/inhands/clothing/towel_righthand.dmi'
 
 /// How much cloth goes into a towel.
 #define TOWEL_CLOTH_AMOUNT 2
@@ -37,9 +33,6 @@
 	worn_icon_digi = TOWEL_WORN_ICON_DIGI
 	icon_state = "towel"
 	base_icon_state = "towel"
-	lefthand_file = TOWEL_LEFTHAND_ICON
-	righthand_file = TOWEL_RIGHTHAND_ICON
-	inhand_icon_state = "towel"
 	force = 0
 	throwforce = 0
 	throw_speed = 1

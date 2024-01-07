@@ -177,7 +177,7 @@
 
 	qdel(src)
 
-/datum/component/shuttle_cling/Destroy(force)
+/datum/component/shuttle_cling/Destroy(force, silent)
 	REMOVE_TRAIT(parent, TRAIT_HYPERSPACED, REF(src))
 	QDEL_NULL(hyperloop)
 

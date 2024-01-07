@@ -72,6 +72,8 @@
 			final_mod *= physiology.tox_mod
 		if(OXY)
 			final_mod *= physiology.oxy_mod
+		if(CLONE)
+			final_mod *= physiology.clone_mod
 		if(STAMINA)
 			final_mod *= physiology.stamina_mod
 		if(BRAIN)
@@ -227,7 +229,7 @@
 
 
 ///Returns a list of bodyparts with wounds (in case someone has a wound on an otherwise fully healed limb)
-/mob/living/carbon/proc/get_wounded_bodyparts(required_bodytype)
+/mob/living/carbon/proc/get_wounded_bodyparts(brute = FALSE, burn = FALSE, required_bodytype)
 	var/list/obj/item/bodypart/parts = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X

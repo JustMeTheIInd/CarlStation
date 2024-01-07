@@ -1,4 +1,3 @@
-// THIS IS A SKYRAT UI FILE
 import { useBackend } from '../backend';
 import { Stack } from '../components';
 import { Objective } from './common/Objectives';
@@ -8,8 +7,8 @@ type Info = {
   objectives: Objective[];
 };
 
-export const Rules = (props) => {
-  const { data } = useBackend<Info>();
+export const Rules = (props, context) => {
+  const { data } = useBackend<Info>(context);
   const { antag_name } = data;
   switch (antag_name) {
     case 'Abductor Agent' || 'Abductor Scientist' || 'Abductor Solo':

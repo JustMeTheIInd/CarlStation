@@ -14,11 +14,11 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 	filename = "nifsoftcatalog"
 	filedesc = "NIFSoft Catalog"
 	extended_desc = "A virtual storefront that allows the user to install NIFSofts and purchase various NIF related products"
-	downloader_category = PROGRAM_CATEGORY_DEVICE
+	category = PROGRAM_CATEGORY_MISC
 	size = 3
 	tgui_id = "NtosNifsoftCatalog"
 	program_icon = "bag-shopping"
-	can_run_on_flags = PROGRAM_PDA
+	usage_flags = PROGRAM_TABLET
 	///What bank account is money being drawn out of?
 	var/datum/bank_account/paying_account
 	///What NIF are the NIFSofts being sent to?

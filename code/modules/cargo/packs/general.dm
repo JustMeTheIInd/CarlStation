@@ -25,7 +25,6 @@
 		/obj/item/toner = 2)
 	crate_name = "tattoo crate"
 	crate_type = /obj/structure/closet/crate/wooden
-	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/misc/bicycle
 	name = "Bicycle"
@@ -34,7 +33,6 @@
 	contains = list(/obj/vehicle/ridden/bicycle)
 	crate_name = "bicycle crate"
 	crate_type = /obj/structure/closet/crate/large
-	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/misc/bigband
 	name = "Big Band Instrument Collection"

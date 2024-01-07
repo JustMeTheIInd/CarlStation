@@ -10,7 +10,7 @@
 	use_power = FALSE
 	circuit = null
 	resistance_flags = FIRE_PROOF
-	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION
+	flags_1 = NODECONSTRUCT_1
 
 /obj/machinery/primitive_stove/Initialize(mapload)
 	. = ..()
@@ -28,7 +28,7 @@
 		return
 	new /obj/item/stack/sheet/mineral/stone(drop_location(), 5)
 	deconstruct(TRUE)
-	return ITEM_INTERACT_SUCCESS
+	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /// Stove component subtype with changed visuals and not much else
 /datum/component/stove/primitive

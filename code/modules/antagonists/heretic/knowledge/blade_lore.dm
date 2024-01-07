@@ -70,7 +70,7 @@
 
 	var/are_we_behind = FALSE
 	// No tactical spinning allowed
-	if(HAS_TRAIT(target, TRAIT_SPINNING))
+	if(target.flags_1 & IS_SPINNING_1)
 		are_we_behind = TRUE
 
 	// We'll take "same tile" as "behind" for ease

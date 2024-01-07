@@ -134,7 +134,12 @@
 		but it still gets the job done and chances are you printed this bad boy off for free."
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/tools.dmi'
 	icon_state = "arc_welder"
-	usesound = 'modular_skyrat/modules/colony_fabricator/sound/arc_welder/arc_welder.ogg'
+	usesound = list(
+		'modular_skyrat/modules/colony_fabricator/sound/arc_furnace/arc_furnace_mid_1.wav',
+		'modular_skyrat/modules/colony_fabricator/sound/arc_furnace/arc_furnace_mid_2.wav',
+		'modular_skyrat/modules/colony_fabricator/sound/arc_furnace/arc_furnace_mid_3.wav',
+		'modular_skyrat/modules/colony_fabricator/sound/arc_furnace/arc_furnace_mid_4.wav',
+	)
 	light_range = 2
 	light_power = 0.75
 	toolspeed = 1

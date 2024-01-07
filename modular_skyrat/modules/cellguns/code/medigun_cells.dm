@@ -39,6 +39,14 @@
 	if(type_damage >=  50 && type_damage < 100)
 		target.adjust_disgust(1.5)
 
+/// Applies clone damage by thresholds
+/obj/projectile/energy/medical/proc/DamageClone(mob/living/target, type_damage, amount_healed, max_clone)
+	if(type_damage >= 50 && type_damage < 100 )
+		target.adjustCloneLoss((amount_healed * (max_clone * 0.5)))
+
+	if(type_damage >= 100)
+		target.adjustCloneLoss((amount_healed * max_clone))
+
 /// Checks to see if the patient is living.
 /obj/projectile/energy/medical/proc/IsLivingHuman(mob/living/target)
 	if(!istype(target, /mob/living/carbon/human))
@@ -67,6 +75,7 @@
 
 	DamageDisgust(target, target.getBruteLoss())
 	target.adjust_disgust(base_disgust)
+	DamageClone(target, target.getBruteLoss(), amount_healed, max_clone)
 	target.adjustBruteLoss(-amount_healed)
 
 /// Heals Burn swithout safety
@@ -76,6 +85,7 @@
 
 	DamageDisgust(target, target.getFireLoss())
 	target.adjust_disgust(base_disgust)
+	DamageClone(target, target.getFireLoss(), amount_healed, max_clone)
 	target.adjustFireLoss(-amount_healed)
 
 /// Heals Brute with safety
@@ -406,7 +416,7 @@
 		return
 
 	var/mob/living/carbon/wearer = target
-	var/obj/item/clothing/gown = new /obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight
+	var/obj/item/clothing/gown = new /obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown/hardlight
 
 	if(wearer.equip_to_slot_if_possible(gown, ITEM_SLOT_OCLOTHING, 1, 1, 1))
 		wearer.visible_message(span_notice("The [gown] covers [wearer] body"), span_notice("The [gown] wraps around your body, covering you"))
@@ -489,12 +499,12 @@
 	sparks.start()
 
 //Objects Used by medicells.
-/obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight
+/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown/hardlight
 	name = "hardlight hospital gown"
 	desc = "A hospital gown made out of hardlight - you can barely feel it on your body, especially with all the anesthetics."
-	greyscale_colors = "#B2D3CA#B2D3CA#B2D3CA#B2D3CA"
+	icon_state = "lgown"
 
-/obj/item/clothing/suit/toggle/labcoat/hospitalgown/hardlight/dropped(mob/user)
+/obj/item/clothing/suit/toggle/labcoat/skyrat/hospitalgown/hardlight/dropped(mob/user)
 	. = ..()
 	var/mob/living/carbon/wearer = user
 
@@ -538,7 +548,7 @@
 	icon_state = "hardlight_down"
 	base_icon_state = "hardlight"
 	max_integrity = 1
-	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION //Made from nothing, can't deconstruct
+	flags_1 = NODECONSTRUCT_1 //Made from nothing, can't deconstruct
 	build_stack_type = null //It would not be good if people could use this to farm materials.
 	var/deploy_time = 20 SECONDS //How long the roller beds lasts for without someone buckled to it.
 

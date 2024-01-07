@@ -96,7 +96,3 @@
 	log_silicon("[user] unloaded [extracted_item] onto [chute] ([AREACOORD(chute)]).")
 	in_use = FALSE
 	return
-
-
-/obj/item/gun/energy/recharge/kinetic_accelerator/cyborg
-	max_mod_capacity = 100

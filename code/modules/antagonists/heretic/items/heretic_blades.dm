@@ -9,13 +9,11 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	obj_flags = CONDUCTS_ELECTRICITY
+	flags_1 = CONDUCT_1
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 20
 	throwforce = 10
-	wound_bonus = 5
-	bare_wound_bonus = 15
 	toolspeed = 0.375
 	demolition_mod = 0.8
 	hitsound = 'sound/weapons/bladeslice.ogg'

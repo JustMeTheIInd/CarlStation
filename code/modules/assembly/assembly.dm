@@ -2,9 +2,9 @@
 /obj/item/assembly
 	name = "assembly"
 	desc = "A small electronic device that should never exist."
-	icon = 'icons/obj/devices/new_assemblies.dmi'
+	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = ""
-	obj_flags = CONDUCTS_ELECTRICITY
+	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT)
 	throwforce = 2

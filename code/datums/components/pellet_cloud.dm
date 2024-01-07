@@ -69,7 +69,7 @@
 	else if(isgrenade(parent) || islandmine(parent) || issupplypod(parent) || ishorrorling(parent)) //SKYRAT EDIT CHANGE: else if(isgrenade(parent) || islandmine(parent) || issupplypod(parent))
 		radius = magnitude
 
-/datum/component/pellet_cloud/Destroy(force)
+/datum/component/pellet_cloud/Destroy(force, silent)
 	purple_hearts = null
 	pellets = null
 	targets_hit = null

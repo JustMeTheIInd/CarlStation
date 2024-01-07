@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	return ..()
 
 /obj/machinery/requests_console/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DECONSTRUCTION))
+	if(!(flags_1 & NODECONSTRUCT_1))
 		new /obj/item/wallframe/requests_console(loc)
 	qdel(src)
 

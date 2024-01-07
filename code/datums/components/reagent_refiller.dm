@@ -28,7 +28,7 @@
 
 	return ..()
 
-/datum/component/reagent_refiller/Destroy(force)
+/datum/component/reagent_refiller/Destroy(force, silent)
 	power_draw_callback = null
 	return ..()
 

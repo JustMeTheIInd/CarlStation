@@ -4,6 +4,9 @@
 /datum/reagent/medicine/syndicate_nanites //Used exclusively by Syndicate medical cyborgs
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC //Let's not cripple synth ops
 
+/datum/reagent/medicine/lesser_syndicate_nanites
+	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
+
 /datum/reagent/medicine/stimulants
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC //Syndicate developed 'accelerants' for synths?
 
@@ -95,10 +98,10 @@
 /datum/reagent/medicine/taste_suppressor/on_mob_metabolize(mob/living/affected_mob)
 	. = ..()
 
-	ADD_TRAIT(affected_mob, TRAIT_AGEUSIA, TRAIT_REAGENT)
+	ADD_TRAIT(affected_mob, TRAIT_AGEUSIA, REAGENT_TRAIT)
 
 
 /datum/reagent/medicine/taste_suppressor/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
 
-	REMOVE_TRAIT(affected_mob, TRAIT_AGEUSIA, TRAIT_REAGENT)
+	REMOVE_TRAIT(affected_mob, TRAIT_AGEUSIA, REAGENT_TRAIT)

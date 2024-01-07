@@ -1,14 +1,11 @@
 import { BooleanLike } from 'common/react';
-
 import { useBackend } from '../backend';
 import { Icon, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { Rules } from './AntagInfoRules'; // SKYRAT EDIT ADDITION
-import {
-  Objective,
-  ObjectivePrintout,
-  ReplaceObjectivesButton,
-} from './common/Objectives';
+import { ObjectivePrintout, Objective, ReplaceObjectivesButton } from './common/Objectives';
+// SKYRAT EDIT BEGIN
+import { Rules } from './AntagInfoRules';
+// SKYRAT EDIT END
 
 const ninja_emphasis = {
   color: 'red',
@@ -19,8 +16,8 @@ type NinjaInfo = {
   can_change_objective: BooleanLike;
 };
 
-export const AntagInfoNinja = (props) => {
-  const { data } = useBackend<NinjaInfo>();
+export const AntagInfoNinja = (props, context) => {
+  const { data } = useBackend<NinjaInfo>(context);
   const { objectives, can_change_objective } = data;
   return (
     <Window width={550} height={450} theme="hackerman">

@@ -1,7 +1,6 @@
-import { exhaustiveCheck } from 'common/exhaustive';
-
 import { Dropdown, Icon } from '../../components';
 import { RandomSetting } from './data';
+import { exhaustiveCheck } from 'common/exhaustive';
 
 export const RandomizationButton = (props: {
   dropdownProps?: Record<string, unknown>;
@@ -48,7 +47,7 @@ export const RandomizationButton = (props: {
           value: RandomSetting.AntagOnly,
         },
       ]}
-      noChevron
+      nochevron
       onSelected={setValue}
       menuWidth="120px"
       width="auto"

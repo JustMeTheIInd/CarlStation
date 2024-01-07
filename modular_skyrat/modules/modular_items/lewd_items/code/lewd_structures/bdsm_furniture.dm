@@ -7,7 +7,7 @@
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/bdsm_furniture.dmi'
 	icon_state = "bdsm_bed"
 	max_integrity = 50
-	obj_flags = CAN_BE_HIT | NO_DECONSTRUCTION
+	flags_1 = NODECONSTRUCT_1
 
 /obj/item/bdsm_bed_kit
 	name = "bdsm bed construction kit"

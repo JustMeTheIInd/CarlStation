@@ -22,6 +22,11 @@
 	name = "Bitrunning crate spawn"
 	icon_state = "crate"
 
+/// Where the safehouse will spawn
+/obj/effect/landmark/bitrunning/safehouse_spawn
+	name = "Bitrunning safehouse spawn"
+	icon_state = "safehouse"
+
 ///Swaps the locations of an encrypted crate in the area with another randomly selected crate.
 ///Randomizes names, so you have to inspect crates manually.
 /obj/effect/landmark/bitrunning/crate_replacer
@@ -65,9 +70,3 @@
 /obj/effect/landmark/bitrunning/mob_segment
 	name = "Bitrunning modular mob segment"
 	icon_state = "mob_segment"
-
-/// Bitrunning safehouses. Typically 7x6 rooms with a single entrance.
-/obj/modular_map_root/safehouse
-	config_file = "strings/modular_maps/safehouse.toml"
-	icon = 'icons/effects/bitrunning.dmi'
-	icon_state = "safehouse"
