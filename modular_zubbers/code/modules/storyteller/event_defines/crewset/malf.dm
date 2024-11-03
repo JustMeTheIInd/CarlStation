@@ -1,12 +1,13 @@
 
 /datum/round_event_control/antagonist/solo/malf
-	name = "Malfunctioning AI"
+	name = "Malfunctioning AI Midround"
 
 	base_antags = 1
 	maximum_antags = 1
 	maximum_antags_global = 1
 
 	min_players = 20
+	roundstart = FALSE
 
 	antag_datum = /datum/antagonist/malf_ai
 	antag_flag = ROLE_MALF
@@ -18,6 +19,8 @@
 	return GLOB.ai_list
 
 /datum/round_event_control/antagonist/solo/malf/roundstart
+	name = "Malfunctioning AI"
+
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart
 	weight = 10
@@ -26,7 +29,7 @@
 /datum/round_event_control/antagonist/solo/malf/roundstart/get_candidates()
 	var/list/candidates = SSgamemode.get_candidates(antag_flag, pick_roundstart_players = TRUE, restricted_roles = restricted_roles)
 	. = list()
-	var/datum/job/aijob = SSjob.GetJob(JOB_AI)
+	var/datum/job/aijob = SSjob.get_job(JOB_AI)
 	for(var/mob/candidate as anything in candidates)
 		if(SSjob.check_job_eligibility(candidate, aijob) == JOB_AVAILABLE)
 			. += candidate
@@ -37,7 +40,7 @@
 	if(!.)
 		return .
 
-	var/datum/job/ai_job = SSjob.GetJobType(/datum/job/ai)
+	var/datum/job/ai_job = SSjob.get_job_type(/datum/job/ai)
 	if(!(ai_job.total_positions - ai_job.current_positions && ai_job.spawn_positions))
 		return FALSE
 	else
