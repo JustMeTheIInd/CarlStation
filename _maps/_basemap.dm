@@ -23,6 +23,8 @@
 		#include "map_files\biodome\biodome.dmm"
 		#include "map_files\moonstation\moonstation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
+		#include "map_files\EvoStation\EvoStation.dmm"
+		// #include "map_files\ss13construct\ss13_construct.dmm"
 		// BUBBER EDIT ADDITION END
 
 		#ifdef CIBUILDING
