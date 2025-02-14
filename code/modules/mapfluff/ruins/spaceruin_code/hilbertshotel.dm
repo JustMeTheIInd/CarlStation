@@ -9,7 +9,11 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
+<<<<<<< Updated upstream
 	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison")
+=======
+	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto")
+>>>>>>> Stashed changes
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -24,7 +28,12 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/cultcave/ghost_cafe_rooms_cultcave
 	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
 	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
+<<<<<<< Updated upstream
 	var/datum/map_template/ghost_cafe_rooms/prisoninfdorm/ghost_cafe_rooms_prisoninfdorm
+	var/datum/map_template/ghost_cafe_rooms/corporate/ghost_cafe_rooms_corporate
+	var/datum/map_template/ghost_cafe_rooms/recovery/ghost_cafe_rooms_recovery
+	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
+>>>>>>> Stashed changes
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -55,7 +64,12 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_cultcave = new()
 	ghost_cafe_rooms_winterwoods = new()
 	ghost_cafe_rooms_evacuationstation = new()
+<<<<<<< Updated upstream
 	ghost_cafe_rooms_prisoninfdorm = new()
+	ghost_cafe_rooms_corporate = new()
+	ghost_cafe_rooms_recovery = new ()
+	ghost_cafe_rooms_grotto = new ()
+>>>>>>> Stashed changes
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -207,6 +221,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	else if(chosen_room == "Station Side")
 		load_from = ghost_cafe_rooms_stationside
+
 	else if(chosen_room == "Library")
 		load_from = ghost_cafe_rooms_library
 	//SKYRAT EDIT ADDITION END
@@ -220,9 +235,19 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	else if(chosen_room == "Evacuated Station")
 		load_from = ghost_cafe_rooms_evacuationstation
 
+<<<<<<< Updated upstream
 	else if(chosen_room == "Prison")
 		load_from = ghost_cafe_rooms_prisoninfdorm
 
+	else if(chosen_room == "Corporate Office")
+		load_from = ghost_cafe_rooms_corporate
+
+	else if(chosen_room == "Recovery Wing")
+		load_from = ghost_cafe_rooms_recovery
+
+	else if(chosen_room == "Grotto")
+		load_from = ghost_cafe_rooms_grotto
+>>>>>>> Stashed changes
 	//BUBBER EDIT END
 
 
