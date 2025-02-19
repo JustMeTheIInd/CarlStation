@@ -9,11 +9,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	//SKYRAT EDIT ADDITION - GHOST HOTEL UPDATE + EXTRA STUFF
-<<<<<<< HEAD
 	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison", "Corporate Office", "Recovery Wing", "Grotto")
-=======
-	var/static/list/hotel_maps = list("Generic", "Apartment", "Beach Condo", "Station Side", "Library", "Cultist's Cavern", "Winter Woods", "Evacuated Station", "Prison")
->>>>>>> parent of e92820c1f58 (Adds the three dorm rooms, and accessories,.)
 	//standart - hilber's hotel room
 	//apartment - see /datum/map_template/ghost_cafe_rooms
 	//beach condo - Beach themed apartment
@@ -29,12 +25,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	var/datum/map_template/ghost_cafe_rooms/winterwoods/ghost_cafe_rooms_winterwoods
 	var/datum/map_template/ghost_cafe_rooms/evacuationstation/ghost_cafe_rooms_evacuationstation
 	var/datum/map_template/ghost_cafe_rooms/prisoninfdorm/ghost_cafe_rooms_prisoninfdorm
-<<<<<<< HEAD
 	var/datum/map_template/ghost_cafe_rooms/corporate/ghost_cafe_rooms_corporate
 	var/datum/map_template/ghost_cafe_rooms/recovery/ghost_cafe_rooms_recovery
 	var/datum/map_template/ghost_cafe_rooms/grotto/ghost_cafe_rooms_grotto
-=======
->>>>>>> parent of e92820c1f58 (Adds the three dorm rooms, and accessories,.)
 	//BUBBER EDIT END
 
 	var/datum/map_template/hilbertshotel/hotelRoomTemp
@@ -66,12 +59,9 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	ghost_cafe_rooms_winterwoods = new()
 	ghost_cafe_rooms_evacuationstation = new()
 	ghost_cafe_rooms_prisoninfdorm = new()
-<<<<<<< HEAD
 	ghost_cafe_rooms_corporate = new()
 	ghost_cafe_rooms_recovery = new ()
 	ghost_cafe_rooms_grotto = new ()
-=======
->>>>>>> parent of e92820c1f58 (Adds the three dorm rooms, and accessories,.)
 	//BUBBER EDIT END
 
 	var/area/currentArea = get_area(src)
@@ -223,6 +213,7 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	else if(chosen_room == "Station Side")
 		load_from = ghost_cafe_rooms_stationside
+
 	else if(chosen_room == "Library")
 		load_from = ghost_cafe_rooms_library
 	//SKYRAT EDIT ADDITION END
@@ -239,7 +230,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 	else if(chosen_room == "Prison")
 		load_from = ghost_cafe_rooms_prisoninfdorm
 
-<<<<<<< HEAD
 	else if(chosen_room == "Corporate Office")
 		load_from = ghost_cafe_rooms_corporate
 
@@ -248,8 +238,6 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 	else if(chosen_room == "Grotto")
 		load_from = ghost_cafe_rooms_grotto
-=======
->>>>>>> parent of e92820c1f58 (Adds the three dorm rooms, and accessories,.)
 	//BUBBER EDIT END
 
 

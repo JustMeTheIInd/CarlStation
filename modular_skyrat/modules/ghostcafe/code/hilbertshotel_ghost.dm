@@ -58,7 +58,6 @@
 /datum/map_template/ghost_cafe_rooms/prisoninfdorm
 	name = "Prison"
 	mappath = "modular_skyrat/modules/hotel_rooms/prisoninfdorm.dmm"
-<<<<<<< HEAD
 
 /datum/map_template/ghost_cafe_rooms/corporate
 	name = "Corporate Office"
@@ -72,5 +71,3 @@
 	name = "Grotto"
 	mappath = "modular_skyrat/modules/hotel_rooms/grotto.dmm"
 
-=======
->>>>>>> parent of e92820c1f58 (Adds the three dorm rooms, and accessories,.)
