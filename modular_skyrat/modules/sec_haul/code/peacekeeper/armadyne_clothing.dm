@@ -89,6 +89,7 @@
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "armadyne_belt"
 	worn_icon_state = "armadyne_belt"
+	uses_advanced_reskins = FALSE
 
 /datum/outfit/armadyne_rep
 	name = "Armadyne Corporate Representative"
