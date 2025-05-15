@@ -175,3 +175,10 @@
 	icon_state = "hood_blueshield"
 	desc = "A comfy kevlar-lined hood to go with the comfy kevlar-lined coat."
 	armor_type = /datum/armor/suit_armor/blueshield
+
+/obj/item/clothing/suit/armor/vest/blueshield/formal
+	name = "blueshield's suit jacket"
+	desc = "A formal suit jacket, utilizing reinforced kevlar-based materials, allows for both comfort, protection and style."
+	icon_state = ""
+	body_parts_covered = CHEST|ARMS
+	unique_reskin = list(
